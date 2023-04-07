@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Furitures</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>YNNA'S FURNITURES</h1>
+        <div class="card" id="cards">
+
+            <script>
+                const xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "http://localhost/json/furnitures_store.php");
+                xmlhttp.send();
+                xmlhttp.onload = function() {
+                    const furnitures_store = JSON.parse(this.responseText).furnitures_store;
+                    const items = document.getElementById('cards');
+                    var j=0;
+                    if(furnitures_store){
+                        for(const i in furnitures_store){
+                            j += 1;
+                            const row =`
+                                <div class="card">
+                                    <div class="face front">
+                                        <img src="${furnitures_store[i].image}" alt="">
+                                        <h3>${furnitures_store[i].id}</h3>
+                                    </div>
+                                    <div class="face back">
+                                        <h3>Brand: ${furnitures_store[i].brand}</h3>
+                                        <p>Color: ${furnitures_store[i].color}</p>
+                                        <p>Starting Price: ${furnitures_store[i].startingprice}</p>
+                                        <p>Import From: ${furnitures_store[i].importfrom}</p>
+                                        <p>Materials</p>
+                                        <ul>
+                                            <p>${furnitures_store[i].materials.m1}</p>
+                                            <p>${furnitures_store[i].materials.m2}</p>
+                                            <p>${furnitures_store[i].materials.m3}</p>
+                                            <p>${furnitures_store[i].materials.m4}</p>
+                                           
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                            `;
+                            items.innerHTML += row;
+                        }
+                    }
+                }
+            </script>
+        </div>
+    </div>   
+</body>
+</html>

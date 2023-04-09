@@ -15,7 +15,7 @@
 
             <script>
                 const xmlhttp = new XMLHttpRequest();
-                xmlhttp.open("GET", "http://localhost/json/furnitures_store.php");
+                xmlhttp.open("GET", "http://json.test/furnitures_store.php");
                 xmlhttp.send();
                 xmlhttp.onload = function() {
                     const furnitures_store = JSON.parse(this.responseText).furnitures_store;
